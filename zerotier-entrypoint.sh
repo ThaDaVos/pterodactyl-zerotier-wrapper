@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "After entrypoint I'll execute '$@'"
+
 if ! [ $(id -u) = 0 ]; then
     echo "User is non-root | So I can't run Zerotier"
     exec "$@"
