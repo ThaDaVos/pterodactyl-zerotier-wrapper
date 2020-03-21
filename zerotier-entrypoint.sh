@@ -1,9 +1,11 @@
 #!/bin/sh
 
-if [[ $EUID -ne 0 ]]; then
+if ! [ $(id -u) = 0 ]; then
     echo "User is non-root: $(whoami) | So I can't run Zerotier"
     exec "$@"
 else
+    echo "User is root, going to start Zerotier in the background"
+
     export PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin
     file="/home/container/zerotier"
 
