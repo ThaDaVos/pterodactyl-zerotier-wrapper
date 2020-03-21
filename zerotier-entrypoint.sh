@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if ((EUID != 0)); then
+if ((${EUID:-0} || "$(id -u)")); then
     user="$(whoami)"
     echo "User is non-root: $user | So I can't run Zerotier"
     exec "$@"
