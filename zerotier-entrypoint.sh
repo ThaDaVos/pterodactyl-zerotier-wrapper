@@ -4,6 +4,8 @@ export PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin
 file="/home/container/zerotier"
 
 if [ ! -f "$file" ]; then
+    echo "No Zerotier file found at $file"
+else
     echo "Found zerotier file at $file"
     zerotier-one &
     export APP_PID=$!
@@ -14,8 +16,6 @@ if [ ! -f "$file" ]; then
         zerotier-cli join $id
     done <"$file"
     echo "See log above if joining was succesful"
-else
-    echo "No Zerotier file found at $file"
 fi
 
 exec gosu container "$@"
