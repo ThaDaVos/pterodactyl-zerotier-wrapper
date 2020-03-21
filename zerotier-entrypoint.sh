@@ -1,8 +1,7 @@
 #!/bin/sh
 
-if ((${EUID:-0} || "$(id -u)")); then
-    user="$(whoami)"
-    echo "User is non-root: $user | So I can't run Zerotier"
+if [[ $EUID -ne 0 ]]; then
+    echo "User is non-root: $(whoami) | So I can't run Zerotier"
     exec "$@"
 else
     export PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin
