@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if ! [ $(id -u) = 0 ]; then
-    echo "User is non-root: $(whoami) | So I can't run Zerotier"
+    echo "User is non-root | So I can't run Zerotier"
     exec "$@"
 else
     echo "User is root, going to start Zerotier in the background"
