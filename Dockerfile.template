@@ -1,4 +1,4 @@
-FROM quay.io/pterodactyl/core:java as src
+FROM ${IMAGE_FROM_SOURCE} as src
 
 EXPOSE 9993/udp
 
